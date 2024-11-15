@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image reworker - Resize & convert</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="icon.png" type="image/x-icon">
+</head>
+<body>
+  <h1>Image reworker</h1>
+  <form id="global-form">
+    <label for="global-width">Width (px):</label>
+    <input type="number" id="global-width" placeholder="e.g. 800">
+    <label for="global-height">Height (px):</label>
+    <input type="number" id="global-height" placeholder="e.g. 600">
+    <label>
+      <input type="checkbox" id="global-aspect-ratio" checked> Keep Aspect ratio
+    </label>
+    <button type="button" id="apply-to-all">Apply to all</button>
+  </form>
+  <label class="custom-file-input" for="image-input">Upload files</label>
+  <button id="process-all">Download all</button>
+  <input type="file" id="image-input" accept=".png,.webp,.jfif" multiple>
+  <div id="image-list"></div>
+  <canvas id="canvas" style="display: none;"></canvas>
+  <script src="script.js"></script>
+</body>
+</html>

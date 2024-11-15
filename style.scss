@@ -1,0 +1,72 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    margin: 20px;
+  }
+  
+  form {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    margin-right: 10px;
+  }
+  
+  input, button {
+    margin: 5px;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  #output a {
+    display: block;
+    margin: 10px 0;
+    font-size: 16px;
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .image-item {
+    border: 1px solid #ececec;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 8rem;
+}
+  .image-item img {
+    margin: 1rem;
+    box-sizing: border-box;
+  }
+  button{
+    background-color: #121212;
+    color: #FAFAFA;
+    border: none;
+    padding: 0.8rem;
+    font-family: 'Segoe UI', sans-serif;
+    border-radius: 50px;
+    font-weight: 500;
+    cursor: pointer;
+
+}
+  input[type="file"] {
+    display: none;
+  }
+  .custom-file-input {
+    cursor: pointer;
+    margin: 2rem;
+    // border: 2px solid #a9a9a9;
+    // color:#909090;
+    border: 2px solid #5d44cd;
+    color:#5d44cd;
+    padding: 0.7rem;
+    border-radius: 50px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  #image-list {
+    margin-top: 2rem;
+  }
+  #process-all {
+    background-color: #5d44cd;
+  }
