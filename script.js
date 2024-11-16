@@ -21,23 +21,23 @@ const updateImageList = () => {
     const thumbnail = document.createElement('img');
     thumbnail.src = image.dataUrl;
     thumbnail.alt = `Miniatura ${image.file.name}`;
-    thumbnail.style.width = 'auto';
+    thumbnail.style.width = '100px';
     thumbnail.style.height = '100px';
     item.appendChild(thumbnail);
 
-    // Informacje o obrazie
-    const info = document.createElement('div');
-    const name = document.createElement('p');
-    // name.textContent = `Zdjęcie ${index + 1}: ${image.file.name}`;
-    name.textContent = `${image.file.name}`;
+  // Informacje o obrazie
+  const info = document.createElement('div');
+  const name = document.createElement('p');
+  name.style.fontSize = '12px';
+  name.textContent = truncateText(image.file.name, 20);
 
-    const originalSize = document.createElement('p');
-    originalSize.textContent = `Original size: ${image.originalWidth}x${image.originalHeight}`;
-    originalSize.style.color = 'gray';
-    originalSize.style.fontSize = '0.7em';
-    info.appendChild(name);
-    info.appendChild(originalSize);
-    item.appendChild(info);
+  const originalSize = document.createElement('p');
+  originalSize.textContent = `Original size: ${image.originalWidth}x${image.originalHeight}`;
+  originalSize.style.color = 'gray';
+  originalSize.style.fontSize = '0.7em';
+  info.appendChild(name);
+  info.appendChild(originalSize);
+  item.appendChild(info);
 
     // Pola do ustawienia wymiarów
     const widthInput = document.createElement('input');
@@ -187,3 +187,7 @@ processAllBtn.addEventListener('click', async () => {
     await downloadImageWithBackground(image);
   }
 });
+
+const truncateText = (text, maxLength) => {
+  return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
+};
