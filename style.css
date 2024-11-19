@@ -1,7 +1,10 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=VT323&display=swap");
 body {
   font-family: "Segoe UI", sans-serif;
   text-align: center;
   margin: 20px;
+  background-color: #fafafa;
 }
 
 form {
@@ -39,31 +42,8 @@ input, button {
   box-sizing: border-box;
 }
 
-button {
-  background-color: #121212;
-  color: #FAFAFA;
-  border: none;
-  padding: 0.8rem;
-  font-family: "Segoe UI", sans-serif;
-  border-radius: 50px;
-  font-weight: 500;
-  cursor: pointer;
-}
-
 input[type=file] {
   display: none;
-}
-
-.custom-file-input {
-  cursor: pointer;
-  margin: 2rem;
-  border: 2px solid #5d44cd;
-  color: #5d44cd;
-  padding: 0.7rem;
-  border-radius: 50px;
-  font-family: "Segoe UI", sans-serif;
-  font-size: 14px;
-  font-weight: 500;
 }
 
 #image-list {
@@ -72,4 +52,50 @@ input[type=file] {
 
 #process-all {
   background-color: #5d44cd;
+}
+
+h1 {
+  font-family: "Space Mono", Courier, monospace;
+}
+
+input {
+  width: auto; /* Domyślne zachowanie */
+  min-width: 50px; /* Minimalna szerokość */
+  max-width: 100%; /* Maksymalna szerokość */
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 2px;
+}
+
+button {
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  max-width: 100%;
+  border: 0;
+  border-radius: 0.25rem;
+  font: inherit;
+  line-height: 1.125;
+  cursor: pointer;
+}
+
+.custom-file-input {
+  cursor: pointer;
+}
+
+#process-all {
+  color: white;
+}
+
+input[type=checkbox] {
+  accent-color: #5d44cd;
+}
+
+::-moz-selection {
+  color: white;
+  background: #5d44cd;
+}
+
+::selection {
+  color: white;
+  background: #5d44cd;
 }/*# sourceMappingURL=style.css.map */

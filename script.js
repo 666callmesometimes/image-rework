@@ -20,24 +20,51 @@ const updateImageList = () => {
     // Miniatura obrazu
     const thumbnail = document.createElement('img');
     thumbnail.src = image.dataUrl;
-    thumbnail.alt = `Miniatura ${image.file.name}`;
+    thumbnail.alt = `Miniatura ${image.customName}`;
     thumbnail.style.width = '100px';
     thumbnail.style.height = '100px';
     item.appendChild(thumbnail);
 
-  // Informacje o obrazie
-  const info = document.createElement('div');
-  const name = document.createElement('p');
-  name.style.fontSize = '12px';
-  name.textContent = truncateText(image.file.name, 20);
+    // Informacje o obrazie
+    const info = document.createElement('div');
+    const name = document.createElement('p');
+    name.style.fontSize = '12px';
+    name.style.width = '150px';
+    name.textContent = truncateText(image.customName, 20);
 
-  const originalSize = document.createElement('p');
-  originalSize.textContent = `Original size: ${image.originalWidth}x${image.originalHeight}`;
-  originalSize.style.color = 'gray';
-  originalSize.style.fontSize = '0.7em';
-  info.appendChild(name);
-  info.appendChild(originalSize);
-  item.appendChild(info);
+    name.addEventListener('click', () => {
+      const input = document.createElement('input');
+      input.type = 'text';
+      const [namePart, extension] = image.customName.split(/(?=\.[^/.]+$)/);
+      input.value = namePart;
+      input.style.fontSize = '12px';
+      input.style.width = '150px';
+
+      input.addEventListener('blur', () => {
+        image.customName = input.value + extension;
+        name.textContent = truncateText(image.customName, 20);
+        info.replaceChild(name, input);
+      });
+
+      input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          image.customName = input.value + extension;
+          name.textContent = truncateText(image.customName, 20);
+          info.replaceChild(name, input);
+        }
+      });
+
+      info.replaceChild(input, name);
+      input.focus();
+    });
+
+    const originalSize = document.createElement('p');
+    originalSize.textContent = `Original size: ${image.originalWidth}x${image.originalHeight}`;
+    originalSize.style.color = 'gray';
+    originalSize.style.fontSize = '0.7em';
+    info.appendChild(name);
+    info.appendChild(originalSize);
+    item.appendChild(info);
 
     // Pola do ustawienia wymiarów
     const widthInput = document.createElement('input');
@@ -91,7 +118,7 @@ const updateImageList = () => {
     removeBtn.style.marginLeft = '10px';
     removeBtn.style.backgroundColor = 'white';
     removeBtn.style.border = '2px solid #d4d4d4';
-    removeBtn.style.color = '#c7c7c7';
+    removeBtn.style.color = '#a1a1a1';
 
     removeBtn.addEventListener('click', () => {
       images.splice(index, 1); // Usunięcie obrazu z listy
@@ -121,6 +148,7 @@ imageInput.addEventListener('change', (e) => {
           aspectRatioCheckbox: true,
           originalWidth: img.width,
           originalHeight: img.height,
+          customName: file.name, // Dodajemy customName
         });
         updateImageList();
       };
@@ -152,7 +180,7 @@ const downloadImageWithBackground = async (image) => {
       canvas.toBlob((blob) => {
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
-        link.download = `${image.file.name.replace(/\.[^/.]+$/, '')}_reworked.jpg`;
+        link.download = `${image.customName.replace(/\.[^/.]+$/, '')}.jpg`; // Używamy customName
         link.click();
         resolve();
       }, 'image/jpeg');
